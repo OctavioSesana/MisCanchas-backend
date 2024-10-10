@@ -1,0 +1,35 @@
+### obtener todas las reservas
+GET http://localhost:3000/api/reserva
+
+### crear una nueva reserva
+POST http://localhost:3000/api/reserva
+Content-Type: application/json
+
+{
+    "fechaReserva": "2024-10-01",
+    "horaInicio": "17:00hs",
+    "horaFin": "18:00hs",
+    "totalReserva": 35000,
+    "idCliente": 11,
+    "idCancha": 6,
+    "idEmpleado": 3
+}
+
+### ID
+@id = 1
+
+### GET one reserva
+http://localhost:3000/api/reserva/{{id}}
+
+### PUT update a reserva
+PUT http://localhost:3000/api/reserva/{{id}}
+Content-Type: application/json
+
+{
+  "horaInicio": "19:00hs",
+    "horaFin": "20:00hs"
+}
+
+### DELETE a reserva - cancelar reserva
+@idToDelete = 3
+DELETE http://localhost:3000/api/reserva/{{idToDelete}}

@@ -1,0 +1,29 @@
+### obtener todas las canchas
+GET http://localhost:3000/api/cancha
+
+### crear una nueva cancha
+POST http://localhost:3000/api/cancha
+Content-Type: application/json
+
+{
+    "estado": "disponible",
+    "canchaClass": 14
+}
+
+### ID
+@id = 2
+
+### GET one cancha
+http://localhost:3000/api/cancha/{{id}}
+
+### PUT update a cancha
+PUT http://localhost:3000/api/cancha/{{id}}
+Content-Type: application/json
+
+{
+    "estado": "ocupada"
+}
+
+### DELETE a cancha
+@idToDelete = 3
+DELETE http://localhost:3000/api/cancha/{{idToDelete}}

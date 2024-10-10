@@ -1,0 +1,31 @@
+### obtener todos los articulos
+GET http://localhost:3000/api/articulo
+
+### crear un nuevo articulo
+POST http://localhost:3000/api/articulo
+Content-Type: application/json
+
+{
+    "type": "pechera",
+    "color": "verde",
+    "talle": "M",
+    "articuloClass": 5
+}
+
+### ID
+@id = 1
+
+### GET one articulo
+http://localhost:3000/api/articulo/{{id}}
+
+### PUT update a articulo
+PUT http://localhost:3000/api/articulo/{{id}}
+Content-Type: application/json
+
+{
+    "color": "azul"
+}
+
+### DELETE a articulo
+@idToDelete = 1
+DELETE http://localhost:3000/api/articulo/{{idToDelete}}

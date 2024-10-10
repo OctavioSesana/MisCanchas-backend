@@ -1,0 +1,30 @@
+### obtener todos los empleados
+GET http://localhost:3000/api/empleado
+
+### crear un nuevo empleado
+POST http://localhost:3000/api/empleado
+Content-Type: application/json
+
+{
+    "nomyape": "Alberto Gonzalez",
+    "dni": 5555,
+    "empleadoClass": 8
+}
+
+### ID
+@id = 4
+
+### GET one empleado
+http://localhost:3000/api/empleado/{{id}}
+
+### PUT update a empleado
+PUT http://localhost:3000/api/empleado/{{id}}
+Content-Type: application/json
+
+{
+  "estado": "ocupado"
+}
+
+### DELETE a empleado
+@idToDelete = 12
+DELETE http://localhost:3000/api/empleado/{{idToDelete}}

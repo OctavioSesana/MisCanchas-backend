@@ -1,0 +1,29 @@
+### GET ALL
+GET http://localhost:3000/api/articulo/classes
+
+### POST
+# @name createArticuloClass
+POST http://localhost:3000/api/articulo/classes
+Content-Type: application/json
+
+{
+    "cantDisponible": 17
+}
+
+### ID
+@id = 1
+
+### GET ONE
+GET http://localhost:3000/api/articulo/classes/{{id}}
+
+### PUT
+PUT  http://localhost:3000/api/articulo/classes/{{id}}
+Content-Type: application/json
+
+{
+    "cantDisponible": 7
+}
+
+### DELETE
+@idToDelete = 1
+DELETE http://localhost:3000/api/articulo/classes/{{idToDelete}}

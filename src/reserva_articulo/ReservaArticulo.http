@@ -1,0 +1,31 @@
+### obtener todas las types
+GET http://localhost:3000/api/reserva_articulo
+
+### crear una nueva type
+POST http://localhost:3000/api/reserva_articulo
+Content-Type: application/json
+
+{
+    "idReserva": 1,
+    "idArticulo": 5,
+    "type": "pechera",
+    "reserva_articuloClass": 5
+}
+
+### ID
+@id = 7
+
+### GET one type
+http://localhost:3000/api/reserva_articulo/{{id}}
+
+### PUT update a type
+PUT http://localhost:3000/api/reserva_articulo/{{id}}
+Content-Type: application/json
+
+{
+    "type": "balon"
+}
+
+### DELETE
+@idToDelete = 5
+DELETE http://localhost:3000/api/reserva_articulo/{{idToDelete}}
