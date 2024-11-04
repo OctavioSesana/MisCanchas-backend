@@ -1,5 +1,6 @@
 import 'reflect-metadata'
 import express from 'express'
+import cors from 'cors'
 import { personaRouter } from './persona/persona.routes.js'
 import { orm, syncSchema } from './shared/db/orm.js'
 import { RequestContext } from '@mikro-orm/core'
@@ -14,7 +15,15 @@ import { reservaRouter } from './reserva/reserva.routes.js'
 import { reserva_articuloClassRouter } from './reserva_articulo/ReservaArticuloClass.routes.js'
 import { ReservaArticuloRouter } from './reserva_articulo/ReservaArticulo.routes.js'
 
+
+
+
 const app = express()
+
+app.use(cors({
+  origin: 'http://localhost:4200' 
+}));
+
 app.use(express.json())
 
 //luego de los middlewares base
