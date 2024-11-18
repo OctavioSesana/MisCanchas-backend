@@ -6,10 +6,10 @@ POST http://localhost:3000/api/reserva_articulo
 Content-Type: application/json
 
 {
-    "idReserva": 1,
-    "idArticulo": 5,
-    "type": "pechera",
-    "reserva_articuloClass": 5
+    "idReserva": 2,
+    "idArticulo": 2,
+    "type": "balon",
+    "reserva_articuloClass": 2
 }
 
 ### ID
