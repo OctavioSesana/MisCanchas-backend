@@ -11,7 +11,7 @@ Content-Type: application/json
 }
 
 ### ID
-@id = 12
+@id = 16
 
 ### GET one cancha
 http://localhost:3000/api/cancha/{{id}}
