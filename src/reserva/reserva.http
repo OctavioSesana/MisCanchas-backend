@@ -6,13 +6,13 @@ POST http://localhost:3000/api/reserva
 Content-Type: application/json
 
 {
-    "fechaReserva": "2024-10-01",
-    "horaInicio": "17:00hs",
-    "horaFin": "18:00hs",
-    "totalReserva": 35000,
-    "idCliente": 11,
-    "idCancha": 6,
-    "idEmpleado": 3
+    "fechaReserva": "2024-11-20",
+    "horaInicio": "20:00hs",
+    "horaFin": "21:00hs",
+    "totalReserva": 45000,
+    "idCliente": 13,
+    "idCancha": 9,
+    "idEmpleado": 5
 }
 
 ### ID

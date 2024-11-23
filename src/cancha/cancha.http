@@ -7,11 +7,11 @@ Content-Type: application/json
 
 {
     "estado": "disponible",
-    "canchaClass": 14
+    "canchaClass": 29
 }
 
 ### ID
-@id = 2
+@id = 12
 
 ### GET one cancha
 http://localhost:3000/api/cancha/{{id}}

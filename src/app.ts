@@ -43,7 +43,7 @@ app.use("/api/reserva", reservaRouter);
 app.use("/api/reserva_articulo/classes", reserva_articuloClassRouter);
 app.use("/api/reserva_articulo", ReservaArticuloRouter);
 
-app.use((_, res, next) => {
+app.use((req, res, next) => {
   res.status(404).send({ message: "Resource not found" });
 });
 

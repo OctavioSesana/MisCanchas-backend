@@ -7,8 +7,8 @@ POST http://localhost:3000/api/cancha/classes
 Content-Type: application/json
 
 {
-    "precioHora": 23700,
-    "tipoCancha": "futbol 11"
+    "precioHora": 20000,
+    "tipoCancha": "futbol 5"
 }
 
 
