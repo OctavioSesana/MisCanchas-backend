@@ -8,8 +8,10 @@ Content-Type: application/json
 {
     "type": "pechera",
     "color": "Verde",
-    "talle": "XL",
-    "articuloClass": 3
+    "talle": "L",
+    "size": "-",
+    "marca": "-",
+    "articuloClass": 2
 }
 
 ### ID

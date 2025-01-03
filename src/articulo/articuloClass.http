@@ -7,7 +7,8 @@ POST http://localhost:3000/api/articulo/classes
 Content-Type: application/json
 
 {
-    "cantDisponible": 1
+    "cantDisponible": 10,
+    "estado": "Disponible"
 }
 
 ### ID

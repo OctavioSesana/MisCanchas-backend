@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express'
-import { Articulo } from './articulo.entity.js'
-import { orm } from '../shared/db/orm.js'
+import { Request, Response, NextFunction } from "express";
+import { Articulo } from "./articulo.entity.js";
+import { orm } from "../shared/db/orm.js";
 
-const em = orm.em
+const em = orm.em;
 
 function sanitizedArticuloInput(
   req: Request,
@@ -15,17 +15,17 @@ function sanitizedArticuloInput(
     articuloClass: req.body.articuloClass,
     color: req.body.color,
     talle: req.body.talle,
-    tamaño: req.body.tamaño,
+    size: req.body.size,
     marca: req.body.marca,
-  }
+  };
   //more checks here
 
   Object.keys(req.body.sanitizedInput).forEach((key) => {
     if (req.body.sanitizedInput[key] === undefined) {
-      delete req.body.sanitizedInput[key]
+      delete req.body.sanitizedInput[key];
     }
-  })
-  next()
+  });
+  next();
 }
 
 async function findAll(req: Request, res: Response) {
@@ -33,63 +33,61 @@ async function findAll(req: Request, res: Response) {
     const articulos = await em.find(
       Articulo,
       {},
-      { populate: ['articuloClass'] }
-    )
-    res.status(200).json({ message: 'found all articulos', data: articulos })
+      { populate: ["articuloClass"] }
+    );
+    res.status(200).json({ message: "found all articulos", data: articulos });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
 async function findOne(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
+    const id = Number.parseInt(req.params.id);
     const articulo = await em.findOneOrFail(
       Articulo,
       { id },
-      { populate: ['articuloClass'] }
-    )
-    res.status(200).json({ message: 'found persona', data: articulo })
+      { populate: ["articuloClass"] }
+    );
+    res.status(200).json({ message: "found persona", data: articulo });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
 async function add(req: Request, res: Response) {
   try {
-    const articulo = em.create(Articulo, req.body.sanitizedInput)
-    await em.flush()
-    res.status(201).json({ message: 'articulo created', data: articulo })
+    const articulo = em.create(Articulo, req.body.sanitizedInput);
+    await em.flush();
+    res.status(201).json({ message: "articulo created", data: articulo });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const articuloToUpdate = await em.findOneOrFail(Articulo, { id })
-    em.assign(articuloToUpdate, req.body.sanitizedInput)
-    await em.flush()
+    const id = Number.parseInt(req.params.id);
+    const articuloToUpdate = await em.findOneOrFail(Articulo, { id });
+    em.assign(articuloToUpdate, req.body.sanitizedInput);
+    await em.flush();
     res
       .status(200)
-      .json({ message: 'articulo updated', data: articuloToUpdate })
+      .json({ message: "articulo updated", data: articuloToUpdate });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
 async function remove(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id)
-    const articulo = em.getReference(Articulo, id)
-    await em.removeAndFlush(articulo)
-    res
-      .status(200)
-      .json({ message: 'articulo deleted' })
+    const id = Number.parseInt(req.params.id);
+    const articulo = em.getReference(Articulo, id);
+    await em.removeAndFlush(articulo);
+    res.status(200).json({ message: "articulo deleted" });
   } catch (error: any) {
-    res.status(500).json({ message: error.message })
+    res.status(500).json({ message: error.message });
   }
 }
 
-export { sanitizedArticuloInput, findAll, findOne, add, update, remove }
+export { sanitizedArticuloInput, findAll, findOne, add, update, remove };

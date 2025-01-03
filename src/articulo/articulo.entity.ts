@@ -1,45 +1,43 @@
 import {
-    Entity,
-    Enum,
-    Property,
-    ManyToOne,
-    Rel,
-    PrimaryKey
-  } from '@mikro-orm/core'
-  //import { BaseEntity } from '../shared/db/baseEntity.entity.js'
-  import { ArticuloClass } from './articuloClass.entity.js'
+  Entity,
+  Enum,
+  Property,
+  ManyToOne,
+  Rel,
+  PrimaryKey,
+} from "@mikro-orm/core";
+//import { BaseEntity } from '../shared/db/baseEntity.entity.js'
+import { ArticuloClass } from "./articuloClass.entity.js";
 
-  @Entity({
-    discriminatorColumn: 'type',
-    discriminatorMap: { pechera: 'Pechera', balon: 'Balon' },
-  })
-  export abstract class Articulo {
-    
-    @PrimaryKey()
-    id!: number;
-    
-    @Enum()
-    type!: 'pechera' | 'balon';
+@Entity({
+  discriminatorColumn: "type",
+  discriminatorMap: { pechera: "Pechera", balon: "Balon" },
+})
+export abstract class Articulo {
+  @PrimaryKey()
+  id!: number;
 
-    @ManyToOne(() => ArticuloClass, { nullable: false })
-    articuloClass!: Rel<ArticuloClass>
-  
-  }
-  
-  @Entity()
-  export class Pechera extends Articulo {
-    @Property({ nullable: false })
-    color!: string
+  @Enum()
+  type!: "pechera" | "balon";
 
-    @Property({ nullable: false })
-    talle!: string
-  }
-  
-  @Entity()
-  export class Balon extends Articulo {
-    @Property({ nullable: false })
-    tamaño!: string
+  @ManyToOne(() => ArticuloClass, { nullable: false })
+  articuloClass!: Rel<ArticuloClass>;
+}
 
-    @Property({ nullable: false })
-    marca!: string
-  }
+@Entity()
+export class Pechera extends Articulo {
+  @Property({ nullable: false })
+  color!: string;
+
+  @Property({ nullable: false })
+  talle!: string;
+}
+
+@Entity()
+export class Balon extends Articulo {
+  @Property({ nullable: false })
+  size!: string;
+
+  @Property({ nullable: false })
+  marca!: string;
+}
