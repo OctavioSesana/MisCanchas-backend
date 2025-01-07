@@ -12,7 +12,7 @@ import { empleadoRouter } from "./empleado/empleado.routes.js";
 import { articuloClassRouter } from "./articulo/articuloClass.routes.js";
 import { articuloRouter } from "./articulo/articulo.routes.js";
 import { reservaRouter } from "./reserva/reserva.routes.js";
-import { reserva_articuloClassRouter } from "./reserva_articulo/ReservaArticuloClass.routes.js";
+//import { reserva_articuloClassRouter } from "./reserva_articulo/ReservaArticuloClass.routes.js";
 import { ReservaArticuloRouter } from "./reserva_articulo/ReservaArticulo.routes.js";
 
 const app = express();
@@ -40,7 +40,7 @@ app.use("/api/empleado", empleadoRouter);
 app.use("/api/articulo/classes", articuloClassRouter);
 app.use("/api/articulo", articuloRouter);
 app.use("/api/reserva", reservaRouter);
-app.use("/api/reserva_articulo/classes", reserva_articuloClassRouter);
+//app.use("/api/reserva_articulo/classes", reserva_articuloClassRouter);
 app.use("/api/reserva_articulo", ReservaArticuloRouter);
 
 app.use((req, res, next) => {

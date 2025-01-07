@@ -7,9 +7,7 @@ Content-Type: application/json
 
 {
     "idReserva": 3,
-    "idArticulo": 4,
-    "type": "pechera",
-    "reserva_articuloClass": 4
+    "idArticulo": 4
 }
 
 ### ID
