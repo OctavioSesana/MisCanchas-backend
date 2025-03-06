@@ -15,6 +15,7 @@ function sanitizedPersonaInput(
     dni: req.body.dni,
     phone: req.body.phone,
     email: req.body.email,
+    password: req.body.password,
   };
   //more checks here
 

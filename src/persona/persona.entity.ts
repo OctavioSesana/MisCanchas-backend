@@ -21,4 +21,7 @@ export class Persona extends BaseEntity {
 
   @Property({ nullable: false })
   email!: string;
+
+  @Property({ nullable: false })
+  password!: string;
 }

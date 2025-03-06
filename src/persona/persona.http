@@ -10,7 +10,8 @@ Content-Type: application/json
     "lastname": "Tartaglini",
     "dni": 6745,
     "phone": 1756234,
-    "email": "delfittt@gmail.com"
+    "email": "delfittt@gmail.com",
+    "password": "hola"
     //"personaClass": 12
 }
 
@@ -30,5 +31,5 @@ Content-Type: application/json
 }
 
 ### DELETE a persona
-@idToDelete = 22
+@idToDelete = 2
 DELETE http://localhost:3000/api/persona/{{idToDelete}}
