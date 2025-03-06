@@ -43,10 +43,10 @@ async function findAll(req: Request, res: Response) {
 
 async function findOne(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id);
+    const email = req.params.email;
     const persona = await em.findOneOrFail(
       Persona,
-      { id }
+      { email }
       //{ populate: ['personaClass'] }
     );
     res.status(200).json({ message: "found persona", data: persona });
@@ -67,8 +67,8 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id);
-    const personaToUpdate = await em.findOneOrFail(Persona, { id });
+    const email = req.params.email;
+    const personaToUpdate = await em.findOneOrFail(Persona, { email });
     em.assign(personaToUpdate, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: "persona updated", data: personaToUpdate });

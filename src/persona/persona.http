@@ -6,27 +6,27 @@ POST http://localhost:3000/api/persona
 Content-Type: application/json
 
 {
-    "name": "Martina",
-    "lastname": "Vivas",
-    "dni": 3345,
-    "phone": 1234,
-    "email": "octasesana@gmail.com"
+    "name": "Delfina",
+    "lastname": "Tartaglini",
+    "dni": 6745,
+    "phone": 1756234,
+    "email": "delfittt@gmail.com"
     //"personaClass": 12
 }
 
 ### ID
-@id = 17
+@email = leomessi@gmail.com
 
 ### GET one persona
-http://localhost:3000/api/persona/{{id}}
+http://localhost:3000/api/persona/{{email}}
 
 
 ### PUT update a persona
-PUT http://localhost:3000/api/persona/{{id}}
+PUT http://localhost:3000/api/persona/{{email}}
 Content-Type: application/json
 
 {
-  "name": "Martita"
+  "name": "Delfina"
 }
 
 ### DELETE a persona
