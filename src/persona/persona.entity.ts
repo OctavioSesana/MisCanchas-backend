@@ -1,23 +1,24 @@
-import {
-    Entity,
-    Property,
-    ManyToOne,
-    Rel,
-  } from '@mikro-orm/core'
-  import { BaseEntity } from '../shared/db/baseEntity.entity.js'
-  import { PersonaClass } from './personaClass.entity.js'
-  
-  @Entity()
-  export class Persona extends BaseEntity {
-    @Property({ nullable: false })
-    name!: string
+import { Entity, Property, ManyToOne, Rel } from "@mikro-orm/core";
+import { BaseEntity } from "../shared/db/baseEntity.entity.js";
+//import { PersonaClass } from "./personaClass.entity.js";
 
-    @ManyToOne(() => PersonaClass, { nullable: false })
-    personaClass!: Rel<PersonaClass>
+@Entity()
+export class Persona extends BaseEntity {
+  @Property({ nullable: false })
+  name!: string;
 
-    @Property({ nullable: false })
-    lastname!: string
+  /* @ManyToOne(() => PersonaClass, { nullable: false })
+    personaClass!: Rel<PersonaClass> */
 
-    @Property({ nullable: false })
-    dni!: number
-  }
+  @Property({ nullable: false })
+  lastname!: string;
+
+  @Property({ nullable: false })
+  dni!: number;
+
+  @Property({ nullable: false })
+  phone!: number;
+
+  @Property({ nullable: false })
+  email!: string;
+}

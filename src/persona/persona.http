@@ -9,11 +9,13 @@ Content-Type: application/json
     "name": "Martina",
     "lastname": "Vivas",
     "dni": 3345,
-    "personaClass": 12
+    "phone": 1234,
+    "email": "octasesana@gmail.com"
+    //"personaClass": 12
 }
 
 ### ID
-@id = 12
+@id = 17
 
 ### GET one persona
 http://localhost:3000/api/persona/{{id}}
@@ -28,5 +30,5 @@ Content-Type: application/json
 }
 
 ### DELETE a persona
-@idToDelete = 12
+@idToDelete = 22
 DELETE http://localhost:3000/api/persona/{{idToDelete}}

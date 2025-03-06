@@ -4,7 +4,7 @@ import cors from "cors";
 import { personaRouter } from "./persona/persona.routes.js";
 import { orm, syncSchema } from "./shared/db/orm.js";
 import { RequestContext } from "@mikro-orm/core";
-import { personaClassRouter } from "./persona/personaClass.routes.js";
+//import { personaClassRouter } from "./persona/personaClass.routes.js";
 import { canchaClassRouter } from "./cancha/canchaClass.routes.js";
 import { canchaRouter } from "./cancha/canchaRoutes.js";
 import { empleadoClassRouter } from "./empleado/empleadoClass.routes.js";
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 });
 //antes de las rutas y middlewares de negocio
 
-app.use("/api/persona/classes", personaClassRouter);
+// app.use("/api/persona/classes", personaClassRouter);
 app.use("/api/persona", personaRouter);
 app.use("/api/cancha/classes", canchaClassRouter);
 app.use("/api/cancha", canchaRouter);

@@ -1,4 +1,4 @@
-import {
+/* import {
     Entity,
     OneToMany,
     Property,
@@ -22,4 +22,4 @@ import {
     })
     
     personas = new Collection<Persona>(this)
-  }
+  } */
