@@ -22,7 +22,7 @@ PUT  http://localhost:3000/api/articulo/classes/{{id}}
 Content-Type: application/json
 
 {
-    "cantDisponible": 7
+    "estado": "Disponible"
 }
 
 ### DELETE

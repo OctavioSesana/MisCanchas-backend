@@ -31,5 +31,5 @@ Content-Type: application/json
 }
 
 ### DELETE a persona
-@idToDelete = 2
+@idToDelete = 21
 DELETE http://localhost:3000/api/persona/{{idToDelete}}

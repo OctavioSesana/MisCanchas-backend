@@ -40,8 +40,8 @@ async function findAll(req: Request, res: Response) {
 
 async function findOne(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id);
-    const reserva = await em.findOneOrFail(Reserva, { id });
+    const mail_cliente = req.params.mail_cliente;
+    const reserva = await em.findOneOrFail(Reserva, { mail_cliente });
     res.status(200).json({ message: "found reserva", data: reserva });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
@@ -60,8 +60,8 @@ async function add(req: Request, res: Response) {
 
 async function update(req: Request, res: Response) {
   try {
-    const id = Number.parseInt(req.params.id);
-    const reservaToUpdate = await em.findOneOrFail(Reserva, { id });
+    const mail_cliente = req.params.mail_cliente;
+    const reservaToUpdate = await em.findOneOrFail(Reserva, { mail_cliente });
     em.assign(reservaToUpdate, req.body.sanitizedInput);
     await em.flush();
     res.status(200).json({ message: "reserva updated", data: reservaToUpdate });
