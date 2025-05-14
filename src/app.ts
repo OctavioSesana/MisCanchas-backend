@@ -14,8 +14,12 @@ import { articuloRouter } from "./articulo/articulo.routes.js";
 import { reservaRouter } from "./reserva/reserva.routes.js";
 //import { reserva_articuloClassRouter } from "./reserva_articulo/ReservaArticuloClass.routes.js";
 import { ReservaArticuloRouter } from "./reserva_articulo/ReservaArticulo.routes.js";
+import bodyParser from 'body-parser'; // o directamente express.json()
+import { loginRouter } from './login/login.routes.js';
 
 const app = express();
+
+app.use(bodyParser.json()); // o app.use(express.json());
 
 app.use(
   cors({
@@ -42,10 +46,13 @@ app.use("/api/articulo", articuloRouter);
 app.use("/api/reserva", reservaRouter);
 //app.use("/api/reserva_articulo/classes", reserva_articuloClassRouter);
 app.use("/api/reserva_articulo", ReservaArticuloRouter);
+app.use("/api/login", loginRouter);
 
 app.use((req, res, next) => {
   res.status(404).send({ message: "Resource not found" });
 });
+
+
 
 await syncSchema(); //never in production
 
