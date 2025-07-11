@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 import { Reserva } from "./reserva.entity.js";
 import { orm } from "../shared/db/orm.js";
+import { Articulo } from "../articulo/articulo.entity.js";
+import { ReservaArticulo } from "../reserva_articulo/ReservaArticulo.entity.js";
 
 const em = orm.em;
 
@@ -73,12 +75,36 @@ async function update(req: Request, res: Response) {
 async function remove(req: Request, res: Response) {
   try {
     const id = Number.parseInt(req.params.id);
-    const reserva = em.getReference(Reserva, id);
+
+    // 1️⃣ Buscar la reserva
+    const reserva = await em.findOneOrFail(Reserva, id);
+
+    // 2️⃣ Buscar registros en ReservaArticulo relacionados con esta reserva
+    const reservaArticulos = await em.find(ReservaArticulo, { idReserva: id });
+
+    // 3️⃣ Para cada registro, actualizar estado de articuloClass y eliminar ReservaArticulo
+    for (const ra of reservaArticulos) {
+      // Buscar el artículo y traer la relación articuloClass
+      const articulo = await em.findOne(Articulo, ra.idArticulo, { populate: ['articuloClass'] });
+
+      if (articulo && articulo.articuloClass) {
+        articulo.articuloClass.estado = "Disponible";
+        await em.persistAndFlush(articulo.articuloClass);
+      }
+
+      // Borrar la relación ReservaArticulo
+      await em.removeAndFlush(ra);
+    }
+
+    // 4️⃣ Finalmente, eliminar la reserva
     await em.removeAndFlush(reserva);
-    res.status(200).json({ message: "reserva deleted" });
+
+    res.status(200).json({ message: "Reserva eliminada y artículos liberados" });
   } catch (error: any) {
+    console.error("Error al eliminar reserva:", error);
     res.status(500).json({ message: error.message });
   }
 }
+
 
 export { sanitizedReservaInput, findAll, findOne, add, update, remove };

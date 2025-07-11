@@ -6,17 +6,27 @@ POST http://localhost:3000/api/persona
 Content-Type: application/json
 
 {
-    "name": "Delfina",
-    "lastname": "Tartaglini",
-    "dni": 6745,
-    "phone": 1756234,
-    "email": "delfittt@gmail.com",
+    "name": "Camila",
+    "lastname": "Salvia",
+    "dni": 423432,
+    "phone": 534531,
+    "email": "camisalvia2@gmail.com",
     "password": "hola"
     //"personaClass": 12
 }
 
+### Login de persona
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+  "email": "octasesana@gmail.com",
+  "password": "hola"
+}
+
+
 ### ID
-@email = leomessi@gmail.com
+@email = leomessi2022@gmail.com
 
 ### GET one persona
 http://localhost:3000/api/persona/{{email}}
@@ -27,9 +37,10 @@ PUT http://localhost:3000/api/persona/{{email}}
 Content-Type: application/json
 
 {
-  "name": "Delfina"
+  "email": "leomessi@gmail.com",
+  "phone": 123456
 }
 
 ### DELETE a persona
-@idToDelete = 21
+@idToDelete = 4
 DELETE http://localhost:3000/api/persona/{{idToDelete}}

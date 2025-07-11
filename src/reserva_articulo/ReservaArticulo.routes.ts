@@ -1,4 +1,7 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
+import { RequestContext } from '@mikro-orm/core';
+import { ReservaArticulo } from "./ReservaArticulo.entity";
+import { Articulo } from "../articulo/articulo.entity";
 import {
   sanitizedReservaArticuloInput,
   findAll,
