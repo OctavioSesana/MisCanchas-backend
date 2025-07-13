@@ -16,3 +16,5 @@ reservaRouter.post("/", sanitizedReservaInput, add);
 reservaRouter.put("/:mail_cliente", sanitizedReservaInput, update);
 reservaRouter.patch("/:mail_cliente", sanitizedReservaInput, update);
 reservaRouter.delete("/:id", remove);
+// reservaRouter.post("/", sanitizedReservaInput, createReservaConPago);
+

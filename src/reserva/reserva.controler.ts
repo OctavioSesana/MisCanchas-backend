@@ -3,6 +3,10 @@ import { Reserva } from "./reserva.entity.js";
 import { orm } from "../shared/db/orm.js";
 import { Articulo } from "../articulo/articulo.entity.js";
 import { ReservaArticulo } from "../reserva_articulo/ReservaArticulo.entity.js";
+import { MercadoPagoConfig, Preference } from "mercadopago";
+
+const client = new MercadoPagoConfig({ accessToken: 
+  'APP_USR-8588958575311945-071115-2b4e98e627c531a28461d875e1b52b9f-156701486' });
 
 const em = orm.em;
 
@@ -31,6 +35,7 @@ function sanitizedReservaInput(
   next();
 }
 
+
 async function findAll(req: Request, res: Response) {
   try {
     const reservas = await em.find(Reserva, {});
@@ -54,7 +59,36 @@ async function add(req: Request, res: Response) {
   try {
     const reserva = em.create(Reserva, req.body.sanitizedInput);
     await em.flush();
-    res.status(201).json({ message: "reserva created", data: reserva });
+
+    // Configuración de MercadoPago
+    // ✅ 2️⃣ Crear preferencia MercadoPago
+    const preference = new Preference(client);
+
+    const body = {
+      items: [
+        {
+          id: "reserva-" + reserva.id,
+          title: "Reserva de cancha",
+          quantity: 1,
+          unit_price: 1000, // 💡 Podés ajustar según precio real
+        },
+      ],
+      back_urls: {
+    success: 'https://www.tusitio.com/pago-exitoso',
+    failure: 'https://www.tusitio.com/pago-fallido',
+    pending: 'https://www.tusitio.com/pago-pendiente',
+  },
+      auto_return: 'approved',
+    };
+
+    const result = await preference.create({ body });
+
+    // ✅ 3️⃣ Responder con reserva y link
+    res.status(201).json({
+      message: "reserva created",
+      data: reserva,
+      init_point: result.init_point,
+    });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
@@ -105,6 +139,7 @@ async function remove(req: Request, res: Response) {
     res.status(500).json({ message: error.message });
   }
 }
+
 
 
 export { sanitizedReservaInput, findAll, findOne, add, update, remove };
