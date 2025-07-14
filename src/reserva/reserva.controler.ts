@@ -57,6 +57,7 @@ async function findOne(req: Request, res: Response) {
 
 async function add(req: Request, res: Response) {
   try {
+    console.log('REQ BODY BACKEND:', req.body);
     const reserva = em.create(Reserva, req.body.sanitizedInput);
     await em.flush();
 
@@ -66,18 +67,18 @@ async function add(req: Request, res: Response) {
 
     const body = {
       items: [
-        {
-          id: "reserva-" + reserva.id,
-          title: "Reserva de cancha",
-          quantity: 1,
-          unit_price: 1000, // 💡 Podés ajustar según precio real
-        },
+      {
+        id: "reserva-" + reserva.id,
+        title: "Reserva de cancha",
+        quantity: 1,
+        unit_price: reserva.totalReserva * 0.5, // Solo paga el 50%
+      },
       ],
       back_urls: {
-    success: 'https://www.tusitio.com/pago-exitoso',
-    failure: 'https://www.tusitio.com/pago-fallido',
-    pending: 'https://www.tusitio.com/pago-pendiente',
-  },
+      success: 'https://www.tusitio.com/pago-exitoso',
+      failure: 'https://www.tusitio.com/pago-fallido',
+      pending: 'https://www.tusitio.com/pago-pendiente',
+      },
       auto_return: 'approved',
     };
 
