@@ -38,5 +38,5 @@ Este backend utiliza la SDK oficial de MercadoPago para generar enlaces de pago.
 Cuando se crea una reserva, se genera un init_point que redirige al checkout de MercadoPago.
 
 ## Testing
-Los testings se ejecutan corriendo en la terminal: npm test
+Los testings se ejecutan corriendo en la terminal: npm run test
 
