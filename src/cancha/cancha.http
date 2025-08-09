@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "estado": "disponible",
-    "canchaClass": 8
+    "canchaClass": 1
 }
 
 ### ID
