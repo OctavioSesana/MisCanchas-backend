@@ -7,7 +7,7 @@ import {
   PrimaryKey,
 } from "@mikro-orm/core";
 //import { BaseEntity } from '../shared/db/baseEntity.entity.js'
-import { ArticuloClass } from "./articuloClass.entity.js";
+
 
 @Entity({
   discriminatorColumn: "type",
@@ -20,8 +20,11 @@ export abstract class Articulo {
   @Enum()
   type!: "pechera" | "balon";
 
-  @ManyToOne(() => ArticuloClass, { nullable: false })
-  articuloClass!: Rel<ArticuloClass>;
+  @Property({ nullable: false })
+  cantDisponible!: number;
+
+  @Property({ nullable: false })
+  estado!: string;
 }
 
 @Entity()

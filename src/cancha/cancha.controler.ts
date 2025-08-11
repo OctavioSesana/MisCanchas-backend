@@ -11,7 +11,8 @@ function sanitizedCanchaInput(
 ) {
   req.body.sanitizedInput = {
     estado: req.body.estado,
-    canchaClass: req.body.canchaClass,
+    precioHora: req.body.precioHora,
+    tipoCancha: req.body.tipoCancha,
   }
   //more checks here
 
@@ -27,8 +28,7 @@ async function findAll(req: Request, res: Response) {
   try {
     const canchas = await em.find(
       Cancha,
-      {},
-      { populate: ['canchaClass'] }
+      {}
     )
     res.status(200).json({ message: 'found all canchas', data: canchas })
   } catch (error: any) {
@@ -41,10 +41,9 @@ async function findOne(req: Request, res: Response) {
     const id = Number.parseInt(req.params.id)
     const cancha = await em.findOneOrFail(
       Cancha,
-      { id },
-      { populate: ['canchaClass'] }
+      { id }
     )
-    res.status(200).json({ message: 'found persona', data: cancha })
+    res.status(200).json({ message: 'found cancha', data: cancha })
   } catch (error: any) {
     res.status(500).json({ message: error.message })
   }

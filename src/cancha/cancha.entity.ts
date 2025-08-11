@@ -5,13 +5,15 @@ import {
     Rel,
   } from '@mikro-orm/core'
   import { BaseEntity } from '../shared/db/baseEntity.entity.js'
-  import { CanchaClass } from './canchaClass.entity.js'
-  
+    
   @Entity()
   export class Cancha extends BaseEntity {
     @Property({ nullable: false })
     estado!: string //reservada o disponible
 
-    @ManyToOne(() => CanchaClass, { nullable: false })
-    canchaClass!: Rel<CanchaClass>
+    @Property({ nullable: false })
+    precioHora!: number; //F5 = 15000 y F7 = 24000
+
+    @Property({ nullable: false })
+    tipoCancha!: string;
   }

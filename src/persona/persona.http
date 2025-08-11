@@ -6,13 +6,12 @@ POST http://localhost:3000/api/persona
 Content-Type: application/json
 
 {
-    "name": "Camila",
-    "lastname": "Salvia",
-    "dni": 423432,
-    "phone": 534531,
-    "email": "camisalvia2@gmail.com",
+    "name": "Octavio",
+    "lastname": "Sesana",
+    "dni": 43644808,
+    "phone": 3463440,
+    "email": "octasesana@gmail.com",
     "password": "hola"
-    //"personaClass": 12
 }
 
 ### Login de persona

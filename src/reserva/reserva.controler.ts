@@ -120,11 +120,11 @@ async function remove(req: Request, res: Response) {
     // 3️⃣ Para cada registro, actualizar estado de articuloClass y eliminar ReservaArticulo
     for (const ra of reservaArticulos) {
       // Buscar el artículo y traer la relación articuloClass
-      const articulo = await em.findOne(Articulo, ra.idArticulo, { populate: ['articuloClass'] });
+      const articulo = await em.findOne(Articulo, ra.idArticulo);
 
-      if (articulo && articulo.articuloClass) {
-        articulo.articuloClass.estado = "Disponible";
-        await em.persistAndFlush(articulo.articuloClass);
+      if (articulo) {
+        articulo.estado = "Disponible";
+        await em.persistAndFlush(articulo);
       }
 
       // Borrar la relación ReservaArticulo

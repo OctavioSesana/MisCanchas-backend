@@ -12,7 +12,8 @@ function sanitizedArticuloInput(
   req.body.sanitizedInput = {
     id: req.body.id,
     type: req.body.type,
-    articuloClass: req.body.articuloClass,
+    cantDisponible: req.body.cantDisponible,
+    estado: req.body.estado,
     color: req.body.color,
     talle: req.body.talle,
     size: req.body.size,
@@ -32,8 +33,7 @@ async function findAll(req: Request, res: Response) {
   try {
     const articulos = await em.find(
       Articulo,
-      {},
-      { populate: ["articuloClass"] }
+      {}
     );
     res.status(200).json({ message: "found all articulos", data: articulos });
   } catch (error: any) {
@@ -46,10 +46,9 @@ async function findOne(req: Request, res: Response) {
     const id = Number.parseInt(req.params.id);
     const articulo = await em.findOneOrFail(
       Articulo,
-      { id },
-      { populate: ["articuloClass"] }
+      { id }
     );
-    res.status(200).json({ message: "found persona", data: articulo });
+    res.status(200).json({ message: "found articulo", data: articulo });
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
