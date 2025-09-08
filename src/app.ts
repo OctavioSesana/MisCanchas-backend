@@ -23,7 +23,14 @@ const ALLOWED_ORIGINS = [
 ];
 
 // ✅ CORS PRIMERO
-app.use(cors());
+app.use(
+  cors({
+    origin: ALLOWED_ORIGINS,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.options("*", cors());
 
 // ✅ Parser
@@ -58,3 +65,8 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
+app.get("/", (req, res) => {
+  res.send({ message: "API MisCanchas funcionando 🚀" });
+});
+
