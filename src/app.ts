@@ -19,11 +19,28 @@ const app = express();
 
 app.use(bodyParser.json()); // o app.use(express.json());
 
+const ALLOWED_ORIGINS = [
+  "http://localhost:4200",
+  "https://mis-canchas-front.netlify.app",
+  "https://mis-canchas.com",
+  "https://www.mis-canchas.com",
+];
+
 app.use(
   cors({
-    origin: "http://localhost:4200",
+    origin: (origin, cb) => {
+      if (!origin) return cb(null, true);                 
+      if (ALLOWED_ORIGINS.includes(origin)) return cb(null, true);
+      return cb(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: false,
   })
 );
+
+// ✅ preflight por las dudas
+app.options("*", cors());
 
 app.use(express.json());
 
@@ -50,7 +67,12 @@ app.use((req, res, next) => {
 
 
 
-await syncSchema(); //never in production
+// await syncSchema(); //never in production
+
+if (process.env.SYNC_SCHEMA === 'true') {
+  await syncSchema();
+}
+
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
