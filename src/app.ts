@@ -15,13 +15,14 @@ import { ReservaArticuloRouter } from "./reserva_articulo/ReservaArticulo.routes
 import bodyParser from 'body-parser'; // o directamente express.json()
 import { loginRouter } from './login/login.routes.js';
 
+
 const app = express();
 
 app.use(bodyParser.json()); // o app.use(express.json());
 
 const ALLOWED_ORIGINS = [
   "http://localhost:4200",
-  "https://mis-canchas-front.netlify.app",
+  'https://mis-canchas-front.netlify.app',
   "https://mis-canchas.com",
   "https://www.mis-canchas.com",
 ];
@@ -74,6 +75,7 @@ if (process.env.SYNC_SCHEMA === 'true') {
 }
 
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
